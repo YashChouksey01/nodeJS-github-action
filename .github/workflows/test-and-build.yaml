@@ -1,5 +1,5 @@
 name: Testing and Building my app
-on: push
+on: push          # [skip ci] in commit message will skip the workflow
   # push:
   #   branches: [main]
   #   paths:    
