@@ -1,11 +1,11 @@
 name: Testing and Building my app
-on: 
-  push:
-    branches: [main]
-    paths:    
-      - 'src/**'
-      # - 'package.json'
-      # - 'package-lock.json'
+on: push
+  # push:
+  #   branches: [main]
+  #   paths:    
+  #     - 'src/**'
+  #     # - 'package.json'
+  #     # - 'package-lock.json'
 
   # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
     #   - 'README.md'
