@@ -2,14 +2,13 @@ name: Testing and Building my app
 on: 
   push:
     branches: [main]
-    paths-ignore: 
-      - 'README.md'
-
     paths:    
       - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
+      # - 'package.json'
+      # - 'package-lock.json'
 
+  # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
+    #   - 'README.md'
   #  pull_request:
   #   types: [opened, closed] 
   
