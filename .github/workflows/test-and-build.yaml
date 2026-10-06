@@ -1,18 +1,18 @@
 name: Testing and Building my app
-on: push          # [skip ci] in commit message will skip the workflow 
+on: push                      # [skip ci] in commit message will skip the workflow 
                  
-  # push:
-  #   branches: [main]
-  #   paths:    
+  # push:                       # {event trigger filter -> branch filter and path filter , activity type filter}
+  #   branches: [main]          #  inside the main branch and any changes in these files  will trigger the workflow
+  #   paths:                    #  both conditions must be satisfied for the workflow to trigger.
   #     - 'src/**'
   #     # - 'package.json'
   #     # - 'package-lock.json'
 
   # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
-    #   - 'README.md'
+    #   - 'README.md'        #  any changes in this file will not trigger the workflow
 
-  #  pull_request:
-  #   types: [opened, closed] 
+  #  pull_request:             # {activity type filter} make another repo and do some changes and  test this workflow with pull request event
+  #   types: [opened, closed]  # by default pull_request event triggers on opened, synchronize, reopened, closed, and edited activity types
   
 # on: [push, pull_request , 'workflow_dispatch']
 # on: push
@@ -32,20 +32,20 @@ jobs:
         run: npm install
       - name: testing app
         run: npm test 
-  # build:
-  #   needs: test
-  #   runs-on: ubuntu-slim
-  #   steps:
-  #     - name: getting my code first
-  #       uses: actions/checkout@v6
-  #     # - name: installing node
-  #     #   uses: actions/setup-node@v6
-  #     #   with:
-  #     #     node-version: '22.15.1'
-  #     - name: installing dependencies
-  #       run: npm install
-  #     - name: start my app
-  #       run: npm run build
+  build:
+    needs: test
+    runs-on: ubuntu-slim
+    steps:
+      - name: getting my code first
+        uses: actions/checkout@v6
+      # - name: installing node
+      #   uses: actions/setup-node@v6
+      #   with:
+      #     node-version: '22.15.1'
+      - name: installing dependencies
+        run: npm install
+      - name: start my app
+        run: npm run build
 
 
 
@@ -59,4 +59,4 @@ jobs:
 
 
 
-# yash chouksey harsh 
+# yash chouksey  
