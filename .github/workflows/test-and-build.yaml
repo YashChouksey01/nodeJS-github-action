@@ -1,3 +1,4 @@
+# 3)
 name: Testing and Building my app
 on: push                      # [skip ci] in commit message will skip the workflow 
                  
@@ -23,21 +24,21 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: getting my code first
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6   # is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
       # - name: installing node
-      #   uses: actions/setup-node@v6
-      #   with:
+      #   uses: actions/setup-node@v6  # is an official GitHub Action used to install and configure Node.js on the GitHub Actions runner.
+      #   with:                        # Now your workflow can execute npm commands..
       #     node-version: '22.15.1'
       - name: installing dependencies
         run: npm install
       - name: testing app
         run: npm test 
   build:
-    needs: test
+    needs: test 
     runs-on: ubuntu-slim
     steps:
       - name: getting my code first
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6   
       # - name: installing node
       #   uses: actions/setup-node@v6
       #   with:
@@ -56,6 +57,15 @@ jobs:
 # runners       -> https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners
 # actions       -> https://github.com/marketplace?query=setup+node&type=actions
 
+#------------------------------------ actions/checkout@v6
+# actions/checkout@v6 is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
+# - uses: actions/checkout@v6
+#   with:
+#     fetch-depth: 0
+#     path: my-project
+# other options:
+# 1) fetch-depth: 0 → Downloads the complete Git history, including branches and tags.
+# 2) path: my-project → Places the repository inside a folder named my-project.
 
 
 
