@@ -1,72 +1,102 @@
-# 3)
-name: Testing and Building my app
-on: push                      # [skip ci] in commit message will skip the workflow 
+# # 3)
+# name: Testing and Building my app
+# on: push                      # [skip ci] in commit message will skip the workflow 
                  
-  # push:                       # {event trigger filter -> branch filter and path filter , activity type filter}
-  #   branches: [main]          #  inside the main branch and any changes in these files  will trigger the workflow
-  #   paths:                    #  both conditions must be satisfied for the workflow to trigger.
-  #     - 'src/**'
-  #     # - 'package.json'
-  #     # - 'package-lock.json'
+#   # push:                       # {event trigger filter -> branch filter and path filter , activity type filter}
+#   #   branches: [main]          #  inside the main branch and any changes in these files  will trigger the workflow
+#   #   paths:                    #  both conditions must be satisfied for the workflow to trigger.
+#   #     - 'src/**'
+#   #     # - 'package.json'
+#   #     # - 'package-lock.json'
 
-  # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
-    #   - 'README.md'        #  any changes in this file will not trigger the workflow
+#   # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
+#     #   - 'README.md'        #  any changes in this file will not trigger the workflow
 
-  #  pull_request:             # {activity type filter} make another repo and do some changes and  test this workflow with pull request event
-  #   types: [opened, closed]  # by default pull_request event triggers on opened, synchronize, reopened, closed, and edited activity types
+#   #  pull_request:             # {activity type filter} make another repo and do some changes and  test this workflow with pull request event
+#   #   types: [opened, closed]  # by default pull_request event triggers on opened, synchronize, reopened, closed, and edited activity types
   
-# on: [push, pull_request , 'workflow_dispatch']
-# on: push
+# # on: [push, pull_request , 'workflow_dispatch']
+# # on: push
 
 
+# jobs:
+#   test:
+#     runs-on: ubuntu-slim
+#     steps:
+#       - name: getting my code first
+#         uses: actions/checkout@v6   # is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
+#       # - name: installing node
+#       #   uses: actions/setup-node@v6  # is an official GitHub Action used to install and configure Node.js on the GitHub Actions runner.
+#       #   with:                        # Now your workflow can execute npm commands..
+#       #     node-version: '22.15.1'
+#       - name: installing dependencies
+#         run: npm install
+#       - name: testing app
+#         run: npm test 
+#   build:
+#     needs: test 
+#     runs-on: ubuntu-slim
+#     steps:
+#       - name: getting my code first
+#         uses: actions/checkout@v6   
+#       # - name: installing node
+#       #   uses: actions/setup-node@v6
+#       #   with:
+#       #     node-version: '22.15.1'
+#       - name: installing dependencies
+#         run: npm install
+#       - name: start my app
+#         run: npm run build
+
+
+
+
+
+# # skip-workflow -> https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs
+# # for events    -> https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#push
+# # runners       -> https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners
+# # actions       -> https://github.com/marketplace?query=setup+node&type=actions
+
+# #------------------------------------ actions/checkout@v6
+# # actions/checkout@v6 is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
+# # - uses: actions/checkout@v6
+# #   with:
+# #     fetch-depth: 0
+# #     path: my-project
+# # other options:
+# # 1) fetch-depth: 0 → Downloads the complete Git history, including branches and tags.
+# # 2) path: my-project → Places the repository inside a folder named my-project.
+
+
+
+# # yash chouksey  
+
+
+
+################################################ again ###########################
+
+name: testing & building app
+on: push
 jobs:
   test:
     runs-on: ubuntu-slim
     steps:
-      - name: getting my code first
-        uses: actions/checkout@v6   # is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
-      # - name: installing node
-      #   uses: actions/setup-node@v6  # is an official GitHub Action used to install and configure Node.js on the GitHub Actions runner.
-      #   with:                        # Now your workflow can execute npm commands..
-      #     node-version: '22.15.1'
-      - name: installing dependencies
-        run: npm install
-      - name: testing app
-        run: npm test 
-  build:
-    needs: test 
-    runs-on: ubuntu-slim
-    steps:
-      - name: getting my code first
-        uses: actions/checkout@v6   
-      # - name: installing node
-      #   uses: actions/setup-node@v6
+      - name: bringing my code
+        uses: actions/checkout@v7
+      # - name: install node
+      #   uses: actions/setup-node@v6 
       #   with:
       #     node-version: '22.15.1'
       - name: installing dependencies
         run: npm install
-      - name: start my app
-        run: npm run build
-
-
-
-
-
-# skip-workflow -> https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs
-# for events    -> https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#push
-# runners       -> https://docs.github.com/en/actions/reference/runners/github-hosted-runners#single-cpu-runners
-# actions       -> https://github.com/marketplace?query=setup+node&type=actions
-
-#------------------------------------ actions/checkout@v6
-# actions/checkout@v6 is an official GitHub Action used to check out (download) your GitHub repository's source code onto the GitHub Actions runner.
-# - uses: actions/checkout@v6
-#   with:
-#     fetch-depth: 0
-#     path: my-project
-# other options:
-# 1) fetch-depth: 0 → Downloads the complete Git history, including branches and tags.
-# 2) path: my-project → Places the repository inside a folder named my-project.
-
-
-
-# yash chouksey  
+      - name: test app
+        run: npm test
+  build:
+     runs-on: ubuntu-slim
+     steps:
+       - name: getting my code
+         uses: actions/checkout@v6
+       - name: install dependies
+         run: npm install
+       - name: build app
+         run: npm run build
