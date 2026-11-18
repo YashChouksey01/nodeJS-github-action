@@ -91,12 +91,12 @@ jobs:
         run: npm install
       - name: test app
         run: npm test
-  # build:
-  #    runs-on: ubuntu-slim
-  #    steps:
-  #      - name: getting my code
-  #        uses: actions/checkout@v6
-  #      - name: install dependies
-  #        run: npm install
-  #      - name: build app
-  #        run: npm run build
+  build:
+     runs-on: ubuntu-slim
+     steps:
+       - name: getting my code
+         uses: actions/checkout@v6
+       - name: install dependies
+         run: npm install
+       - name: build app
+         run: npm run build
