@@ -1,7 +1,8 @@
 # # 3)
 # name: Testing and Building my app
 # on: push                      # [skip ci] in commit message will skip the workflow 
-                 
+
+#  # on:
 #   # push:                       # {event trigger filter -> branch filter and path filter , activity type filter}
 #   #   branches: [main]          #  inside the main branch and any changes in these files  will trigger the workflow
 #   #   paths:                    #  both conditions must be satisfied for the workflow to trigger.
@@ -14,7 +15,7 @@
 #     #   - 'README.md'        #  any changes in this file will not trigger the workflow
 
 #  #  on:
-#   #  pull_request:             # {activity type filter} make another branch  and do some changes here and  test this workflow with pull request event
+#   #  pull_request:             # {activity type filter} make another repo and do some changes and  test this workflow with pull request event
 #   #   types: [opened, closed]  # by default pull_request event triggers on opened, synchronize, reopened, closed, and edited activity types
   
 # # on: [push, pull_request , 'workflow_dispatch']
@@ -78,7 +79,9 @@
 ################################################ again ###########################
 
 name: testing & building app
-on: [ push , pull_request , workflow_dispatch  ] 
+on: 
+  pull_request:   #[ push , pull_request , workflow_dispatch  ]  
+    types: [ opened, closed ]
 jobs:
   test:
     runs-on: ubuntu-slim
