@@ -9,10 +9,12 @@
 #   #     # - 'package.json'
 #   #     # - 'package-lock.json'
 
+#  # on:
 #   # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
 #     #   - 'README.md'        #  any changes in this file will not trigger the workflow
 
-#   #  pull_request:             # {activity type filter} make another repo and do some changes and  test this workflow with pull request event
+#  #  on:
+#   #  pull_request:             # {activity type filter} make another branch  and do some changes here and  test this workflow with pull request event
 #   #   types: [opened, closed]  # by default pull_request event triggers on opened, synchronize, reopened, closed, and edited activity types
   
 # # on: [push, pull_request , 'workflow_dispatch']
