@@ -9,6 +9,7 @@
 #   #     - 'src/**'
 #   #     # - 'package.json'
 #   #     # - 'package-lock.json'
+
 #   # paths-ignore:            #  your workflow should not have both paths and paths-ignore defined under the same event.
 #     #   - 'README.md'        #  any changes in this file will not trigger the workflow
 
